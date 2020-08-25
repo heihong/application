@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PostI } from './posts/post-create/post-create.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'application';
+  statePosts: PostI[] = [];
+
+  onPostAdded(post){
+    this.statePosts.push(post)
+  }
+
 }
