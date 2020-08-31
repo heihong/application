@@ -1,6 +1,10 @@
 import { Component, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
 import { Post } from '../post.model';
+import { Store } from '@ngrx/store';
+import * as fromReducer from './../../store/post.reducer';
+import { pipe } from 'rxjs';
+import * as fromSelector from './../../store/post.selector';
+import * as fromAction from './../../store/post.action';
 
 @Component({
   selector: 'app-post-create',
@@ -10,18 +14,12 @@ import { Post } from '../post.model';
 export class PostCreateComponent  {
   enterTitle= '';
   enterContent= '';
-  @Output() postCreated: EventEmitter<Post> = new EventEmitter();
 
 
-  constructor() { }
+  constructor(private postStore: Store<fromReducer.State>) {}
 
   onAddPost(){
-    const post: Post = {
-      title: this.enterTitle,
-      content: this.enterContent
-    }
-
-    this.postCreated.emit(post);
+    this.postStore.dispatch(fromAction.createPost( { title: this.enterTitle, content: this.enterContent } ));
   }
 
 }

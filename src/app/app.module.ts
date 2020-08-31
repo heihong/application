@@ -1,33 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { from } from 'rxjs';
 import { HeaderComponent } from './header/header.component';
-import { PostListComponent } from './posts/post-list/post-list.component';
-import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/post.reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostCreateComponent,
-    HeaderComponent,
-    PostListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule,
     AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule
+    HomeModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent]

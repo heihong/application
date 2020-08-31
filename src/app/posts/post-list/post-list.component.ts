@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../post.model';
+import { Store } from '@ngrx/store';
+import * as fromReducer from './../../store/post.reducer';
+import { pipe } from 'rxjs';
+import * as fromSelector from './../../store/post.selector';
 
 
 @Component({
@@ -9,8 +13,8 @@ import { Post } from '../post.model';
 })
 export class PostListComponent {
 
-  constructor() { }
+  constructor(private postStore: Store<fromReducer.State>) {}
 
-  @Input() posts: Post[]= [];
+  posts = this.postStore.select(pipe(fromSelector.selectPosts))
 
 }
