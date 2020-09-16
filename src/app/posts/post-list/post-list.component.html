@@ -1,17 +1,18 @@
-<ng-container *ngIf="{posts: posts$ | async } as data">
+<ng-container *ngIf="{ posts: posts$ | async } as data">
   <mat-accordion *ngIf="data.posts.length > 0">
-    <mat-expansion-panel   *ngFor="let post of data.posts">
+    <mat-expansion-panel *ngFor="let post of data.posts">
       <mat-expansion-panel-header>
-        {{post.title}}
+        {{ post.title }}
       </mat-expansion-panel-header>
-      <p> {{post.content}}</p>
+      <p>{{ post.content }}</p>
       <mat-action-row>
         <button mat-button color="primary">EDIT</button>
-        <button mat-button color="accent" (click)="onDeletePost(post.id)">DELETE</button>
+        <button mat-button color="accent" (click)="onDeletePost(post.id)">
+          DELETE
+        </button>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 
-  <p *ngIf="data.posts.length <= 0"class="center">No post</p>
+  <p *ngIf="data.posts.length <= 0" class="center">No post</p>
 </ng-container>
-
