@@ -11,8 +11,8 @@ const initialState = {
 };
 const postReducer = createReducer(
   initialState,
-  on(fromAction.createPost, (state, post) => ({ ...state, posts: [...state.posts, {...post}]})),
-  on(fromAction.getPosts, state => ({ ...state})),
+  on(fromAction.successCreatePost, (state, {post}) => ({ ...state, posts: [...state.posts, post] })),
+  on(fromAction.successGetPosts, (state, {posts}) => ({ ...state, posts: posts })),
 );
 
 export function reducer(state: State | undefined, action: Action) {

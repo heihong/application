@@ -1,10 +1,9 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Post } from '../post.model';
 import { Store } from '@ngrx/store';
 import * as fromReducer from './../../store/post.reducer';
-import { pipe } from 'rxjs';
-import * as fromSelector from './../../store/post.selector';
 import * as fromAction from './../../store/post.action';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-post-create',
@@ -12,14 +11,13 @@ import * as fromAction from './../../store/post.action';
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateComponent  {
-  enterTitle= '';
-  enterContent= '';
-
 
   constructor(private postStore: Store<fromReducer.State>) {}
 
-  onAddPost(){
-    this.postStore.dispatch(fromAction.createPost( { title: this.enterTitle, content: this.enterContent } ));
+  onAddPost(form :NgForm) {
+    const post: Post = { id: null, title: form.value.title, content: form.value.content }
+    this.postStore.dispatch(fromAction.createPost({post}));
+    form.resetForm();
   }
 
 }

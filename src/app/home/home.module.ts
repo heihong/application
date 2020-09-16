@@ -8,6 +8,9 @@ import { PostCreateComponent } from '../posts/post-create/post-create.component'
 import { PostListComponent } from '../posts/post-list/post-list.component';
 import { MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { PostEffects } from '../store/post.effect';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +23,8 @@ import { FormsModule } from '@angular/forms';
       { path: '', pathMatch: 'full', component: HomeComponent },
     ]),
     StoreModule.forFeature('postState', reducer),
+    EffectsModule.forFeature([PostEffects]),
+    HttpClientModule
   ],
   declarations: [HomeComponent, PostCreateComponent, PostListComponent]
 })

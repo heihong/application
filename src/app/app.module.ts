@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/post.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { HomeModule } from './home/home.module';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import { HomeModule } from './home/home.module';
     HomeModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
   ],
   providers: [],
