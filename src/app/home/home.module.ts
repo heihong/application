@@ -16,6 +16,8 @@ import { FormsModule } from "@angular/forms";
 import { EffectsModule } from "@ngrx/effects";
 import { PostEffects } from "../store/post.effect";
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +25,7 @@ import { HttpClientModule } from "@angular/common/http";
     MatCardModule,
     MatButtonModule,
     MatExpansionModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: "", pathMatch: "full", component: HomeComponent },
     ]),

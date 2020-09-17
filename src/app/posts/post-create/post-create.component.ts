@@ -3,7 +3,7 @@ import { Post } from "../post.model";
 import { Store } from "@ngrx/store";
 import * as fromReducer from "./../../store/post.reducer";
 import * as fromAction from "./../../store/post.action";
-import { NgForm } from "@angular/forms";
+import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-post-create",
@@ -11,15 +11,26 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./post-create.component.scss"],
 })
 export class PostCreateComponent {
+
+  form = new FormGroup({
+    content: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    title: new FormControl('', [Validators.required,  Validators.minLength(2)],),
+  });
+
   constructor(private postStore: Store<fromReducer.State>) {}
 
-  onAddPost(form: NgForm) {
+  onAddPost() {
     const post: Post = {
       id: null,
-      title: form.value.title,
-      content: form.value.content,
+      title: this.form.value.title,
+      content: this.form.value.content,
     };
     this.postStore.dispatch(fromAction.createPost({ post }));
-    form.resetForm();
+    this.form.reset(this.form.value);
   }
+
+  get title() { return this.form.get('title'); }
+
+  get content() { return this.form.get('content'); }
 }
+
